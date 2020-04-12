@@ -32,4 +32,3 @@ if __name__ == "__main__":
     dqn_agent = DQN_AGENT()
     agent = dqn_agent.train_model()
     agent.initialize()
-    print(agent)
