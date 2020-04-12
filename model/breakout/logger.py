@@ -11,3 +11,4 @@ train_metrics = [
 
 logging.get_logger().set_level(logging.INFO)
 log_metrics(train_metrics)
+print(log_metrics(train_metrics))
