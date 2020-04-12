@@ -9,7 +9,7 @@ class DQN_AGENT(DQN):
         self.q_net = super().model()
 
     def train_model(self):
-        train_step = tf.Variable(0)
+        train_step = tf.Variable(0) # count num of training steps
         update_period = 4 # train the model every 4 steps
         optimizer = keras.optimizers.RMSprop(lr=2.5e-4, rho=0.95, momentum=0.0,
                                             epsilon=0.00001, centered=True)
