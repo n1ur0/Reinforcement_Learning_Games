@@ -19,16 +19,20 @@ from tf_agents.environments.tf_py_environment import TFPyEnvironment
 #     gym_env_wrappers=[lambda env: TimeLimit(env, max_episode_steps=10000)],
 #     env_wrappers=[lambda env: ActionRepeat(env, times=4)])
 
+class ENV:
+    def __init__(self):
+        self.max_episode_steps = 27000 # <=> 108k ALE frames since 1 step = 4 frames
+        self.environment_name = "BreakoutNoFrameskip-v4"
+        self.env = None
+        pass
 
-max_episode_steps = 27000 # <=> 108k ALE frames since 1 step = 4 frames
-environment_name = "BreakoutNoFrameskip-v4"
-
-env = suite_atari.load(
-    environment_name,
-    max_episode_steps=max_episode_steps,
-    gym_env_wrappers=[AtariPreprocessing, FrameStack4])
+    def _setup(self): 
+        self.env = suite_atari.load(
+            self.environment_name,
+            max_episode_steps=self.max_episode_steps,
+            gym_env_wrappers=[AtariPreprocessing, FrameStack4])
 
 
-tf_env = TFPyEnvironment(env)
-
-print(tf_env)
+    def wrap_env(self):
+        tf_env = TFPyEnvironment(self.env)
+        return tf_env
