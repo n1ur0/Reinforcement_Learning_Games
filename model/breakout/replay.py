@@ -6,6 +6,7 @@ class REPLAY(DQN_AGENT):
     def __init__(self):
         super().__init__()
         self.agent = super().train_model()
+        
     def _replay_buffer(self):
         replay_buffer = tf_uniform_replay_buffer.TFUniformReplayBuffer(
             data_spec=self.agent.collect_data_spec, # specification of data
